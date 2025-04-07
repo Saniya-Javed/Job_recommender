@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>build your resume</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/css/main.css">
+    <!-- <link rel="stylesheet" href="http://127.0.0.1:5000/static/css/resume.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/demo_main.css') }}">
+    <script src="{{ url_for('static', filename='js/demo_main.js') }}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="margin: 0;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <!-- <a class="navbar-brand" ><img src="{{url_for('static', filename='img.jpg')}}" width="40px"></a> -->
+            <a class="navbar-brand" >Job Portal</a>
+              </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/appliedjobs">applied jobs</a></li>
+                <li><a href="/search">Serch</a></li>
+                <li ><a href="/buildresume">Resume</a></li>
+                <li ><a href="/jobs"></span>Jobs</a></li>
+                <li ><a href="/profile"></span>Profile</a></li>
+                <li ><a href="/quiz"></span>Quiz</a></li>
+               <li ><a href="/logout"></span>Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+  
+      {% block content %}
+      {% if msg %}
+      <div class="alert alert-danger alert-dismissible fade in" style="padding: 10px 10%;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+        <strong>{{msg}}</strong>
+      </div>
+      {% endif %}
+    </div>
+    {% endblock content %}
+
+
+{% if ud %}
+      <section>
+        
+        <aside>
+            <ul id="menu">
+                <li>
+                    <img src="data:image/png;base64,{{dp}}" class="img-circle img-thumbnail">
+                    <p>{{ fullname }}</p>
+                </li>
+                <li><a data-value="#home" onclick="handleNavigation(event)"  >Home</a></li>
+                <li><a data-value="#skills" onclick="handleNavigation(event)" >Skills</a></li>
+                <li><a data-value="#academics" onclick="handleNavigation(event)" >Academics</a></li>
+                <li><a data-value="#project" onclick="handleNavigation(event)" >Academic projects</a></li>
+                <li><a data-value="#about" onclick="handleNavigation(event)" >About</a></li>
+                <li> <a href="/download" >download resume</a></li>
+            </ul>            
+        </aside>
+        <main>
+            <div id="home" class="active">
+                <table>
+                    <thead>
+                        <tr><th>OBJECTIVEES</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>{{ objective }}</td></tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr><th>PERSONAL DETAILS</th><th>&nbsp;</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>FULL NAME</td><td>{{ fullname }}</td></tr>
+                        <tr><td>DATE OF BIRTH</td><td>{{ bday }}</td></tr>
+                        <tr><td>MARITAL STATUS</td><td>{{ marital }}</td></tr>
+                        <tr><td>LANGUAGE KNOWN</td><td>{{ languages }}</td></tr>
+                        <tr><td>CONTACT NO</td><td><a href="#">{{ pnum }}</a></td></tr>
+                        <tr><td>GMAIL ID</td><td><a href="#">{{ gid }}</a></td></tr>
+                        <tr><td>PERMANENT ADDRESS</td><td><a target="_blank" href="#">{{ paddress }}</a></td></tr>
+                        <tr><td>CURRENT ADDRESS</td><td><a target="_blank" href="#">{{ caddress }}</a></td></tr>
+                    </tbody>
+                </table>
+                    <!-- {% autoescape off %}
+            {{ d }}
+            {% endautoescape %} -->
+            </div>
+
+
+            <div id="skills">
+                <table>
+                    <thead>
+                        <tr><th>SUMMURY OF SKILLS</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><ul>
+                            {% for i in summury %}
+                                    <li>{{ i[0] }}</li>
+                            {% endfor %}
+                        </ul></td></tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr><th>TECHNICAL SKILLS</th><th>&nbsp;</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>WEB SKILLS</td><td>{{ skill }}</td></tr>
+                        <tr><td>WEB TOOLS</td><td>{{ tool }}</td></tr>
+                        <tr><td>DATABASE</td><td>{{ db }}</td></tr>
+                        <tr><td>OPERATING SYSTEMS</td><td>{{ sos }}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div id="academics">
+                {% for i in academic %}
+                <table>
+                    <thead>
+                        <tr><th>QUALIFICATION</th><th>&nbsp;</th></tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr><td>COURSE</td><td>{{ i[0] }}</td></tr>
+                        <tr><td>COLLEGE</td><td>{{ i[1] }}</td>
+                        <tr><td>RESULT</td><td>{{ i[2] }}%</td></tr>
+                        <tr><td>PASSOUT YEAR</td><td>{{ i[3] }}</td></tr>  
+                                    
+                    </table>
+                </table>
+                {% endfor %}              
+            </div>
+
+
+            <div id="project">
+                <table>
+                    <thead>
+                        <tr><th>PROJECT WORK</th><th>&nbsp;</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>TITLE</td><td>{{ title }}</td></tr>
+                        <tr><td>TECHNOLOGIES USED</td><td>{{ tech }}</td></tr>
+                        <tr><td>SERVER</td><td>{{ srvr }}</td></tr>
+                        <tr><td>OPERATING SYSTEM</td><td>{{ pos }}</td></tr>
+                        <tr><td>TEAM SIZE</td><td>{{ team }} </td></tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr><th>PROJECT DESCRIPTION</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>
+                            {{ desp }}    
+                        </td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div id="about">
+                <table>
+                    <thead>
+                        <tr><th>CURRICULAR ACTIVITIES</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><ul>
+                                    {% for i in activities %}
+                                    <li>{{ i[0] }}</li>
+                                    {% endfor %}
+                        </ul></td></tr>
+                    </tbody>              
+                </table>
+
+                <table>
+                    <thead>
+                        <tr><th>STREGTHS</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><ul>
+                            {% for i in strength %}
+                            <li>{{ i[0] }}</li>
+                            {% endfor %}
+                        </ul></td></tr>
+                    </tbody>              
+                </table>
+
+                <table>
+                    <thead>
+                        <tr><th>DECLARATION</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>
+                            {{ declaration }}
+                        </td></tr>
+                    </tbody>              
+                </table>
+
+            </div>
+        </main>
+    </section>
+
+{% else %}
+<center><h2 style="font-size: 50px;margin-top: 40vh;color:white;">Click <a href="/buildresume" >here</a> to build resume</h2></center>
+{% endif %}
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/js/main.js"></script>
+
+</body>
+</html>

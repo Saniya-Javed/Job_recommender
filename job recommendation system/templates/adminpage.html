@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>build your resume</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://127.0.0.1:5000/static/css/main.css">
+    <!-- <link rel="stylesheet" href="http://127.0.0.1:5000/static/css/resume.css"> -->
+   <style>
+    h1{
+        text-align: center;
+    }
+    .container{
+        margin-top: 100px;
+        padding: 50px;
+        box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+        background-color: white;
+    }
+
+
+   </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse" style="margin: 0;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <!-- <a class="navbar-brand" ><img src="{{url_for('static', filename='img.jpg')}}" width="40px"></a> -->
+            <a class="navbar-brand" >Job Portal</a>
+              </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+               <li ><a href="/logout"></span>Signout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      {% block content %}
+      {% if msg %}
+      <div class="alert alert-danger alert-dismissible fade in" style="padding: 10px 10%;">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+        <strong>{{msg}}</strong>
+      </div>
+      {% endif %}
+    </div>
+    {% endblock content %}
+
+    {% if result %}
+      <div class="container">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Phone number</th>
+                    <th>Gmail</th>
+                    <th>Resume</th>
+                </tr>
+                {% for  row in result %}
+                    <tr>
+                        <td>
+                            {{ row[0] }}
+                        </td>
+                        <td>
+                            {{ row[2] }}
+                        </td>
+                        <td>
+                            {{ row[3] }}
+                        </td>
+                            {% if row[5] == 'yes' %}
+                            {% set email = row[3] %}
+                                <td>
+                                    <a href="{{ url_for('view', email=email)}}"><button class="btn btn-success">View</button></a>
+                                    <a href="{{ url_for('select', email=email)}}"><button class="btn btn-success">Select</button></a>
+                                    <a href="{{ url_for('reject', email=email)}}"><button class="btn btn-success">Reject</button></a>
+                                </td>
+                            {% else %}
+                                <td>
+                                    not uploaded
+                                </td>
+                            {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+      </div>
+    {% endif %}
+
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+    <script src="http://127.0.0.1:5000/static/js/main.js"></script>
+
+</body>
+</html>

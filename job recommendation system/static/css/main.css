@@ -1,0 +1,51 @@
+body{
+    background-image: url('https://i.pinimg.com/736x/57/31/8a/57318a2e51a0066234fc883812cd05d9.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
+    background-attachment: fixed;
+  }
+  
+#content{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+}
+#content > div {
+    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+    background-color: white;
+}
+#content > * {
+    background-color: #fff; 
+    padding:15px; 
+    position: absolute;
+    display: none;
+    left: 7%;
+    right: 7%;
+    width: 86%;
+}
+#content > *.active {
+    display: grid;
+}
+#personal_info, #technical_skill, #academic_projects, #academics div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    border: 1px solid #ddd;
+    margin: 10px 0px;
+    padding: 10px;
+}
+#objectives, #skill_summury, #curricular_activities, #declaration, #strength{
+    border: 1px solid #ddd;
+    margin: 10px 0px;
+    padding: 10px;
+
+}
+#subbtn{
+    background-color: transparent;
+    border: transparent;
+}
+@media screen and (max-width: 768px){
+    #personal_info, #technical_skill, #academic_projects, #academics div, #academics div {
+        grid-template-columns: 1fr;
+    }
+}

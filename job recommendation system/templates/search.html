@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.js" integrity="sha512-o4gKX6jcK0rdciOZ9X8COYkV9gviTJAbYEVW8aC3OgIRuaKDmcT9/OFXBVzHSSOxiTjsTktqrUvCUrHkQHSn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="{{url_for('static', filename='css/index.css')}}" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.js" integrity="sha512-o4gKX6jcK0rdciOZ9X8COYkV9gviTJAbYEVW8aC3OgIRuaKDmcT9/OFXBVzHSSOxiTjsTktqrUvCUrHkQHSn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    #form1, #form2, #form3, #form4{
+      display: none;
+      background-color: white;
+      width: 100%;
+      padding: 0 50px;
+      text-align: left !important;
+    }
+    #form1{
+      background-color: transparent !important;
+    }
+    #form1 input[type=text]{
+      width: 70%;
+      height: 50px;
+      border: 1px solid white;
+      background-color: transparent;
+      color: white;
+      border-radius: 5px;
+    }
+    #form1 h1{
+      color: orange;
+      font-size: 50px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    #form1 input[type=text]::placeholder{
+      color: white;
+    }
+    #form1 input[type=submit]{
+      border-radius: 5px;
+      width: 20%;
+      height: 50px;
+      border: 1px solid white;
+      background-color: transparent;
+      color: white;
+    }
+    #form1 input[type=submit]:hover{
+      background-color: white;
+      color: black;
+    }
+    p{
+      color: black !important;
+      
+    }
+    #form1.active, #form2.active,  #form3.active, #form4.active{
+        display: block;
+}
+body{
+  background-image: url('https://i.pinimg.com/736x/57/31/8a/57318a2e51a0066234fc883812cd05d9.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100vh;
+  background-attachment: fixed;
+}
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse" style="margin: 0;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- <a class="navbar-brand" ><img src="{{url_for('static', filename='img.jpg')}}" width="40px"></a> -->
+      <a class="navbar-brand" >Job Portal</a>
+        </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/appliedjobs">applied jobs</a></li>
+        <li><a href="/search">Serch</a></li>
+                <li ><a href="/buildresume">Resume</a></li>
+                <li ><a href="/jobs"></span>Jobs</a></li>
+                <li ><a href="/profile"></span>Profile</a></li>
+                <li ><a href="/quiz"></span>Quiz</a></li>
+               <li ><a href="/logout"></span>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% block content %}
+        {% if msg %}
+        <div class="alert alert-danger alert-dismissible fade in" style="padding: 10px 10%;">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+          <strong>{{msg}}</strong>
+        </div>
+        {% endif %}
+      </div>
+      {% endblock content %}
+
+<section id="hero" class="d-flex flex-column justify-content-end align-items-center">
+  <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+
+    <div class="carousel-item active">
+      <div class="container">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 carousel-container">
+
+          <form  method="post" action="/jobsearch1" id="form1" class="active">
+            <h1>FIND JOBS</h1>
+            <input type="text" id="job" placeholder="Enter job roll" name="job">
+            <input type="submit" value="Submit">
+          </form>
+  </div>
+  <div class="col-lg-2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
